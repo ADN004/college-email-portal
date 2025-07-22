@@ -37,7 +37,7 @@ A full-stack web application that enables students and parents to send official 
    ```bash
    python -m venv venv
    source venv/bin/activate  # Linux/Mac
-   venv\Scripts\activate     # Windows
+   source venv\Scripts\activate  # Windows
 
 2. Install dependencies:
    ```bash
