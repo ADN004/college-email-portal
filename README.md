@@ -1,6 +1,6 @@
 # college-email-portal
 
-![Project Screenshot](static/images/Screenshot(180).png) <!-- Add a screenshot later -->
+![Project Screenshot](static/images/screenshot.png) <!-- Add a screenshot later -->
 
 A full-stack web application that enables students and parents to send official emails to college staff members with templates and attachments.
 
