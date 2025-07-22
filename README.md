@@ -44,25 +44,23 @@ A full-stack web application that enables students and parents to send official 
    pip install -r requirements.txt
 
 3. Configure environment:
+   Update the .env
+   Update with your SMTP credentials:
+   ```ini
+   EMAIL_HOST_USER=your@email.com
+   EMAIL_HOST_PASSWORD=your-password
 
-      Copy .env.example to .env
-
-     Update with your SMTP credentials:
-      ```ini
-          EMAIL_HOST_USER=your@email.com
-          EMAIL_HOST_PASSWORD=your-password
-
-4. Run migrations:
+5. Run migrations:
    ```bash
-      python manage.py migrate
+   python manage.py migrate
 
-5. Create admin user:
+6. Create admin user:
     ```bash
-      python manage.py createsuperuser
+    python manage.py createsuperuser
 
-6. Run development server:
+7. Run development server:
     ```bash
-      python manage.py runserver
+    python manage.py runserver
 
 ## Usage
 - Access the portal at http://localhost:8000
