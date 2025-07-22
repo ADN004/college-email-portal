@@ -1,0 +1,59 @@
+{% extends "Email_Portail/base.html" %}
+{% load static %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="form-section">
+            <h2 class="form-title">Compose Email</h2>
+            
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="id_subject_template" class="form-label">Select a common subject:</label>
+                    {{ form.subject_template }}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_subject" class="form-label">Subject:</label>
+                    {{ form.subject }}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_recipient" class="form-label">Recipient:</label>
+                    {{ form.recipient }}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_message" class="form-label">Message:</label>
+                    {{ form.message }}
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_cc" class="form-label">CC:</label>
+                    {{ form.cc }}
+                    <div class="form-text">Separate multiple emails with commas</div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_bcc" class="form-label">BCC:</label>
+                    {{ form.bcc }}
+                    <div class="form-text">Separate multiple emails with commas</div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="id_attachment" class="form-label">Attachment:</label>
+                    {{ form.attachment }}
+                    <div class="attachment-info">Allowed file types: PDF, JPG, JPEG, PNG. Max size: 5MB.</div>
+                </div>
+                
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-send"></i> Send Email
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

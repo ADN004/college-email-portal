@@ -1,0 +1,16 @@
+# Core
+Django==5.2.3
+asgiref==3.8.1
+sqlparse==0.5.3
+
+# Forms & UI
+django-crispy-forms==2.4
+crispy-bootstrap5==2025.6
+
+# Security & Utilities
+python-dotenv==1.0.1
+django-ipware==5.0.0
+Pillow==11.2.1  # Only if using image uploads
+
+# Database (PostgreSQL optional)
+psycopg2-binary==2.9.10  # Remove if using SQLite

@@ -1,0 +1,31 @@
+{% extends "Email_Portail/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 160px);">
+    <div class="col-lg-8">
+        <div class="form-section text-center">
+            <h1 class="mb-4">Welcome to College Email Portal</h1>
+            <p class="lead">Send official emails to college staff members easily and securely.</p>
+
+            <div class="d-grid gap-2 col-md-6 mx-auto mt-5">
+                <a href="{% url 'send_email' %}" class="btn btn-primary btn-lg">
+                    <i class="bi bi-envelope-plus"></i> Compose New Email
+                </a>
+            </div>
+
+            <div class="mt-5 text-start">
+                <h3>How it works:</h3>
+                <ol class="list-group list-group-numbered mt-3">
+                    <li class="list-group-item">Select a recipient from the dropdown</li>
+                    <li class="list-group-item">Choose a subject template or write your own</li>
+                    <li class="list-group-item">Compose your message (templates are editable)</li>
+                    <li class="list-group-item">Add CC/BCC recipients if needed</li>
+                    <li class="list-group-item">Attach a file (optional)</li>
+                    <li class="list-group-item">Click "Send Email"</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
