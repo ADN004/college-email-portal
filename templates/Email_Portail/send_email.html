@@ -9,48 +9,64 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 
+                <!-- New Sender Email Field (Added at the top) -->
                 <div class="mb-3">
-                    <label for="id_subject_template" class="form-label">Select a common subject:</label>
-                    {{ form.subject_template }}
+                    <label for="id_sender_email" class="form-label">Your Email Address*</label>
+                    {{ form.sender_email }}
+                    <div class="form-text">This is where replies will be sent</div>
                 </div>
                 
                 <div class="mb-3">
-                    <label for="id_subject" class="form-label">Subject:</label>
+                    <label for="id_subject_template" class="form-label">Select a common subject:</label>
+                    {{ form.subject_template }}
+                    <div class="form-text">Select to auto-fill subject and message</div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="id_subject" class="form-label">Subject*:</label>
                     {{ form.subject }}
                 </div>
                 
                 <div class="mb-3">
-                    <label for="id_recipient" class="form-label">Recipient:</label>
+                    <label for="id_recipient" class="form-label">Recipient*:</label>
                     {{ form.recipient }}
                 </div>
                 
                 <div class="mb-3">
-                    <label for="id_message" class="form-label">Message:</label>
+                    <label for="id_message" class="form-label">Message*:</label>
                     {{ form.message }}
+                    <div class="form-text">Write your message here</div>
                 </div>
                 
-                <div class="mb-3">
-                    <label for="id_cc" class="form-label">CC:</label>
-                    {{ form.cc }}
-                    <div class="form-text">Separate multiple emails with commas</div>
-                </div>
-                
-                <div class="mb-3">
-                    <label for="id_bcc" class="form-label">BCC:</label>
-                    {{ form.bcc }}
-                    <div class="form-text">Separate multiple emails with commas</div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="id_cc" class="form-label">CC:</label>
+                        {{ form.cc }}
+                        <div class="form-text">Separate emails with commas</div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="id_bcc" class="form-label">BCC:</label>
+                        {{ form.bcc }}
+                        <div class="form-text">Separate emails with commas</div>
+                    </div>
                 </div>
                 
                 <div class="mb-4">
                     <label for="id_attachment" class="form-label">Attachment:</label>
                     {{ form.attachment }}
-                    <div class="attachment-info">Allowed file types: PDF, JPG, JPEG, PNG. Max size: 5MB.</div>
+                    <div class="attachment-info">
+                        <i class="bi bi-info-circle"></i> Allowed: PDF, JPG, PNG (Max 5MB)
+                    </div>
                 </div>
                 
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary btn-lg">
-                        <i class="bi bi-send"></i> Send Email
+                        <i class="bi bi-send-fill"></i> Send Email
                     </button>
+                </div>
+                
+                <div class="mt-3 text-muted small">
+                    <i class="bi bi-shield-lock"></i> Your email will be logged for security purposes
                 </div>
             </form>
         </div>

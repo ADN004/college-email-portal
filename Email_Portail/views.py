@@ -18,19 +18,30 @@ def send_email(request):
         if form.is_valid():
             # Prepare email
             subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
             recipient = form.cleaned_data['recipient']
             cc = form.cleaned_data['cc']
             bcc = form.cleaned_data['bcc']
             attachment = request.FILES.get('attachment')
+            client_ip, _ = get_client_ip(request)
+            
+            # Format message to include sender info
+            original_message = form.cleaned_data['message']
+            formatted_message = f"""
+            {original_message}
+            
+            ---
+            Sent by: {form.cleaned_data['sender_email']}
+            Via: College Email Portal
+            """
             
             email = EmailMessage(
                 subject=subject,
-                body=message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
+                body=formatted_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,  # Still sends from your app email
                 to=[recipient.email],
                 cc=[e.strip() for e in cc.split(',')] if cc else [],
                 bcc=[e.strip() for e in bcc.split(',')] if bcc else [],
+                reply_to=[form.cleaned_data['sender_email']]  # Replies go to student
             )
             
             if attachment:
@@ -41,15 +52,15 @@ def send_email(request):
                 email.send()
                 
                 # Log the message
-                client_ip, _ = get_client_ip(request)
                 MessageLog.objects.create(
                     subject=subject,
-                    message=message,
+                    message=original_message,
                     recipient_email=recipient.email,
                     cc_emails=cc,
                     bcc_emails=bcc,
                     attachment_name=attachment.name if attachment else None,
-                    sender_ip=client_ip
+                    sender_ip=client_ip,
+                    sender_email=form.cleaned_data['sender_email']  # Store student email
                 )
                 
                 messages.success(request, 'Your email has been sent successfully!')

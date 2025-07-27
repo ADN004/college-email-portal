@@ -3,6 +3,15 @@ from .models import SubjectTemplate, Recipient
 from django.core.validators import FileExtensionValidator
 
 class EmailForm(forms.Form):
+    sender_email = forms.EmailField(
+        label="Your Email Address",
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'your.email@example.com'
+        }),
+        required=True
+    )
+    
     subject = forms.CharField(
         label="Subject",
         max_length=200,
@@ -63,3 +72,9 @@ class EmailForm(forms.Form):
                 if '@' not in email or '.' not in email:
                     raise forms.ValidationError(f"'{email}' is not a valid email address")
         return bcc
+    
+    def clean_sender_email(self):
+        email = self.cleaned_data.get('sender_email')
+        # Add any additional validation for student emails if needed
+        # Example: Check if it's a valid college email format
+        return email

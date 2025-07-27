@@ -26,6 +26,12 @@ class MessageLog(models.Model):
     attachment_name = models.CharField(max_length=255, blank=True, null=True)
     sent_at = models.DateTimeField(auto_now_add=True)
     sender_ip = models.GenericIPAddressField(blank=True, null=True)
+    sender_email = models.EmailField(verbose_name="Student's Email")
     
     def __str__(self):
-        return f"Email to {self.recipient_email} at {self.sent_at}"
+        return f"Email from {self.sender_email} to {self.recipient_email} at {self.sent_at}"
+
+    class Meta:
+        ordering = ['-sent_at']  # Newest messages first
+        verbose_name = "Email Log"
+        verbose_name_plural = "Email Logs"
